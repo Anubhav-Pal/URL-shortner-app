@@ -25,10 +25,22 @@ app.post('/shorturl', async (req, res) => {
     res.redirect('/')
 })
 app.get('/:shorturl', async (req, res) => {
-    const shorturl = await shortURL.findOne({ short: req.params.shorturl })
-    shorturl.clicks++
-    shorturl.save();
-    res.redirect(shorturl.long)
+    try {
+        const shorturl = await shortURL.findOne({ short: req.params.shorturl });
+
+        if (shorturl) {
+            shorturl.clicks++;
+            shorturl.save();
+            res.redirect(shorturl.long);
+        } else {
+            // Handle the case when the short URL is not found
+            res.status(404).send('Short URL not found');
+        }
+    } catch (error) {
+        // Handle any other errors that might occur during database query
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
 })
 app.listen(3000, () => {
     console.log("Server started at localhost:3000");
