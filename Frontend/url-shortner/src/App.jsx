@@ -1,10 +1,14 @@
+import Navbar from "./components/Navbar"
+import Input from "./containers/Input"
+import Table from "./containers/Table"
 
 function App() {
-
   return (
-    // console.log("hello")h1
-    <h1>Hello World</h1>
-
+    <div>
+      <Navbar />
+      <Input />
+      <Table />
+    </div>
   )
 }
 
