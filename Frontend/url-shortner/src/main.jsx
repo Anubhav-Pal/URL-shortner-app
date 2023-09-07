@@ -4,7 +4,9 @@ import App from './App.jsx'
 import '../main.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
+  <React.StrictMode >
+    <div className='bg-black h-screen'>
+      <App />
+    </div>
   </React.StrictMode>,
 )
